@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pengwang/cloud_platform/project/redis_dict/source/dict.cpp
+unistd.h
+-
+assert.h
+-
+iostream
+-
+memory
+-
+list
+-
+

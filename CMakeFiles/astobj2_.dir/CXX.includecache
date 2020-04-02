@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pengwang/cloud_platform/project/astobj2/astobj2/astobj2.cpp
+stdint.h
+-
+pthread.h
+-
+astobj2.h
+/home/pengwang/cloud_platform/project/astobj2/astobj2/astobj2.h
+
+/home/pengwang/cloud_platform/project/astobj2/astobj2/astobj2.h
+

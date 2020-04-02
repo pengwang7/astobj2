@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -O2 -pg -pipe -Wall -g -W -fPIC -fstrict-aliasing -Wno-invalid-offsetof -Wunused-result -lpthread -lglog   CMakeFiles/astobj2.dir/__astobj2/astobj2.cpp.o  -o astobj2 
