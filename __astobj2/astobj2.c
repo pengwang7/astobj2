@@ -128,43 +128,6 @@ static int ao2_internal_ref(void* user_data, int delta) {
     return ret;
 }
 
-static int ao2_internal_lock_unlock(void* user_data, int op) {
-    struct astobj2* obj = INTERNAL_OBJ_CHECK(user_data);
-    struct astseobj2* seobj = NULL;
-
-    if (!obj) {
-        return -1;
-    }
-
-    int res = 0;
-
-    switch (obj->priv_data.options & AO2_ALLOC_LOCK_MASK) {
-    case AO2_ALLOC_WITH_LOCK:
-        seobj = (struct astseobj2*)INTERNAL_SEOBJ(user_data);
-        if (op == 0) {
-            res = pthread_mutex_unlock(&seobj->lock);
-        } else if (op == 1) {
-            res = pthread_mutex_lock(&seobj->lock);
-        } else if (op == 2) {
-            res = pthread_mutex_trylock(&seobj->lock);
-        } else {
-            res = -1;
-        }
-        break;
-
-    case AO2_ALLOC_WITH_RWLOCK:
-        break;
-
-    case AO2_ALLOC_WITH_NOLOCK:
-        break;
-        
-    default:
-        res = -1;
-    }
-
-    return res;
-}
-
 void* __ao2_alloc(size_t data_size, ao2_destructor destructor_fn, enum ao2_alloc_options opt) {
     return ao2_internal_alloc(data_size, destructor_fn, opt);
 }
@@ -177,67 +140,4 @@ void __ao2_cleanup(void* obj) {
     if (obj) {
         __ao2_ref(obj, -1);
     }
-}
-
-int __ao2_lock(void* obj) {
-    return ao2_internal_lock_unlock(obj, 1);
-}
-
-int __ao2_unlock(void* obj) {
-    return ao2_internal_lock_unlock(obj, 0);
-}
-
-int __ao2_try_lock(void* obj) {
-    return ao2_internal_lock_unlock(obj, 2);
-}
-
-#include <stdio.h>
-
-struct test_a {
-    int* a;
-    char* b;
-    int c;
-};
-
-void test_dtor(void* obj) {
-    printf("test_dtor\n");
-    struct test_a* p = (struct test_a*)obj;
-    if (p) {
-        if (p->a) {
-            free(p->a);
-        }
-
-        if (p->b) {
-            free(p->b);
-        }
-
-        p->c = 0;
-    }
-}
-
-int main() {
-    printf("test astobj2.\n");
-
-    struct test_a* p = ao2_alloc(struct test_a*, sizeof(test_a), test_dtor);
-
-    ao2_ref(p, +1);
-    ao2_lock(p);
-
-    p->a = (int*)calloc(1, sizeof(int));
-    *p->a = 10;
-    p->b = (char*)calloc(1, sizeof(char) * 10);
-    for (int i = 0; i < 10; ++ i) {
-        p->b[i] = 'c';
-    }
-    
-    p->c = 100;
-
-    printf("a=%d, b=%s, c=%d\n", *p->a, p->b, p->c);
-
-    ao2_unlock(p);
-    ao2_ref(p, -1);
-    
-    ao2_ref(p, -1);
-    //ao2_cleanup(p);
-    return 0;
 }

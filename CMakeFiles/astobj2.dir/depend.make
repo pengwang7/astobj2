@@ -3,5 +3,5 @@
 
 CMakeFiles/astobj2.dir/__astobj2/astobj2.cpp.o: __astobj2/astobj2.cpp
 CMakeFiles/astobj2.dir/__astobj2/astobj2.cpp.o: __astobj2/astobj2.h
-CMakeFiles/astobj2.dir/__astobj2/astobj2.cpp.o: __astobj2/lock.h
+CMakeFiles/astobj2.dir/__astobj2/astobj2.cpp.o: __astobj2/atomic.h
 

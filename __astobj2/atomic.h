@@ -1,5 +1,5 @@
-#ifndef __LOCK_H__
-#define __LOCK_H__
+#ifndef __ATOMIC_H__
+#define __ATOMIC_H__
 
 /*! Atomic += */
 #define ast_atomic_fetch_add(ptr, val, memorder)  __sync_fetch_and_add((ptr), (val))
@@ -21,4 +21,4 @@
 #define ast_atomic_fetch_xor(ptr, val, memorder)  __sync_fetch_and_xor((ptr), (val))
 #define ast_atomic_xor_fetch(ptr, val, memorder)  __sync_xor_and_fetch((ptr), (val))
 
-#endif /* __LOCK_H__ */
+#endif /* __ATOMIC_H__ */

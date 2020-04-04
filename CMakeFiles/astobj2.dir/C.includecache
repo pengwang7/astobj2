@@ -6,21 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/home/pengwang/cloud_platform/project/astobj2/__astobj2/astobj2.cpp
+/home/pengwang/cloud_platform/project/astobj2/__astobj2/astobj2.c
 stdlib.h
 -
 pthread.h
 -
 inttypes.h
 -
+utils.h
+/home/pengwang/cloud_platform/project/astobj2/__astobj2/utils.h
 atomic.h
 /home/pengwang/cloud_platform/project/astobj2/__astobj2/atomic.h
 astobj2.h
 /home/pengwang/cloud_platform/project/astobj2/__astobj2/astobj2.h
-stdio.h
--
 
 /home/pengwang/cloud_platform/project/astobj2/__astobj2/astobj2.h
 
 /home/pengwang/cloud_platform/project/astobj2/__astobj2/atomic.h
+
+/home/pengwang/cloud_platform/project/astobj2/__astobj2/utils.h
 
